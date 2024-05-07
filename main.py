@@ -1,5 +1,5 @@
 ERROR_MSG = """
-Foi :red[detectado um problema] na sua máquina!  
+Foi :red[detectado um problema de placa (**{}**)] na sua máquina!  
 Confirme se o número de série é **{}**
 """
 
@@ -28,6 +28,7 @@ if uploaded_img is not None:
     image_text = [_[1].lower() for _ in result]
     error_detected = False
     sn_index = None
+    tamper_index = None
 
     for i, text in enumerate(image_text):
         if "sn" in text:
@@ -35,8 +36,9 @@ if uploaded_img is not None:
 
         if "tamper" in text:
             error_detected = True
+            tamper_index = i
 
     if error_detected:
         st.divider()
-        st.markdown(ERROR_MSG.format(image_text[sn_index]))
+        st.markdown(ERROR_MSG.format(image_text[tamper_index], image_text[sn_index]))
         st.button("Confirmar", type="primary", use_container_width=True)
