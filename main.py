@@ -4,7 +4,6 @@ Confirme se o número de série é **{}**
 """
 
 import easyocr
-import matplotlib.pyplot as plt
 import streamlit as st
 
 
@@ -37,18 +36,3 @@ if uploaded_img is not None:
         st.divider()
         st.markdown(ERROR_MSG.format(image_text[sn_index]))
         st.button("Confirmar", type="primary", use_container_width=True)
-
-
-# # Create image result
-# fig = plt.figure(figsize=(15, 15))
-# im = plt.imread(filename)
-# plt.imshow(im)
-
-# for _ in result:
-#     x = [n[0] for n in _[0]]
-#     y = [n[1] for n in _[0]]
-#     plt.fill(x, y, facecolor="none", edgecolor="red")
-#     plt.text(x[0], y[0] - 5, f"{_[1]} ({_[2] * 100:.2f}%)", color="red", fontsize=12)
-
-# plt.axis("off")
-# plt.show()
