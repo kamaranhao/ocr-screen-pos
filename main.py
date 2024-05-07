@@ -14,7 +14,11 @@ st.caption("Oi! Como podemos te ajudar hoje?")
 st.divider()
 
 if "reader" not in st.session_state:
-    st.session_state.reader = easyocr.Reader(["en"])
+    st.session_state.reader = easyocr.Reader(
+        ["en"],
+        gpu=False,
+        model_storage_directory=".",
+    )
 
 uploaded_img = st.file_uploader("Imagem")
 if uploaded_img is not None:
