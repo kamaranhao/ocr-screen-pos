@@ -6,6 +6,10 @@ Confirme se o número de série é **{}**
 import easyocr
 import streamlit as st
 
+from pillow_heif import register_heif_opener
+
+
+register_heif_opener()
 
 st.set_page_config(page_title="GetClick", layout="wide")
 
