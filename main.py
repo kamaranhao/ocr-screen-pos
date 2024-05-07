@@ -4,15 +4,8 @@ Confirme se o número de série é **{}**
 """
 
 import easyocr
-import io
-import numpy as np
 import streamlit as st
 
-from PIL import Image
-from pillow_heif import register_heif_opener
-
-
-register_heif_opener()
 
 st.set_page_config(page_title="GetClick", layout="wide")
 
@@ -30,8 +23,7 @@ if "reader" not in st.session_state:
 uploaded_img = st.file_uploader("Imagem")
 if uploaded_img is not None:
     bytes_data = uploaded_img.getvalue()
-    image = np.asarray(Image.open(io.BytesIO(bytes_data)))
-    result = st.session_state.reader.readtext(image)
+    result = st.session_state.reader.readtext(bytes_data)
 
     image_text = [_[1].lower() for _ in result]
     error_detected = False
